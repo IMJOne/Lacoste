@@ -24,9 +24,10 @@ export const onUserStateChange = callback => onAuthStateChanged(auth, user => ca
 // 로그인 성공 시 유효한 사용자 정보 객체를 반환
 
 export const getProducts = async () => {
-  return get(ref(database, 'producs')).then(snapshot => {
+  return get(ref(database, 'products')).then(snapshot => {
     if (snapshot.exists()) {
       return Object.values(snapshot.val());
     }
+    return [];
   });
 };
