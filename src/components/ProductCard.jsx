@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function ProductCard({ product: { image, title, category, price } }) {
+export default function ProductCard({ product, product: { id, image, title, category, price } }) {
+  const navigate = useNavigate();
   return (
-    <li className="cursor-pointer">
+    <li className="cursor-pointer" onClick={() => navigate(`/products/${id}`, { state: { product } })}>
       <img src={image} alt={title} />
       <div>
         <h3 className="text-sm mt-2 mb-1">

@@ -7,7 +7,7 @@ module.exports = {
         brand: '#105a33',
       },
       fontFamily: {
-        notoSans: 'Noto Sans KR',
+        pretendard: 'Pretendard Variable',
       },
     },
   },

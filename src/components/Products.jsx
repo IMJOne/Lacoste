@@ -11,7 +11,7 @@ export default function Products() {
     <section className="p-5 sm:p-10">
       {isLoading && <h1>Loading...</h1>}
       {error && <h1>{error}</h1>}
-      <ul className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-10 gap-y-20">
+      <ul className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
         {products && products.map(product => <ProductCard key={product.id} product={product} />)}
       </ul>
     </section>
