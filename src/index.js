@@ -6,7 +6,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import NotFount from './pages/NotFount';
-import Cart from './pages/Cart';
+import MyCart from './pages/MyCart';
 import ProductDetail from './pages/ProductDetail';
 
 const router = createBrowserRouter([
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     errorElement: <NotFount />,
     children: [
       { index: true, path: '/', element: <Home /> },
-      { path: '/cart', element: <Cart /> },
+      { path: '/cart', element: <MyCart /> },
       { path: '/products/:id', element: <ProductDetail /> },
     ],
   },

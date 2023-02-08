@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'firebase/auth';
-import { get, getDatabase, ref } from 'firebase/database';
+import { get, getDatabase, ref, remove, set } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -20,9 +20,11 @@ provider.setCustomParameters({
 
 export const login = () => signInWithPopup(auth, provider).catch(console.error);
 export const logout = () => signOut(auth).catch(console.error);
-export const onUserStateChange = callback => onAuthStateChanged(auth, user => callback(user));
-// 로그인 성공 시 유효한 사용자 정보 객체를 반환
 
+// 로그인 성공 시 유효한 사용자 정보 객체를 반환
+export const onUserStateChange = callback => onAuthStateChanged(auth, user => callback(user));
+
+// 가져오고 싶은 데이터베이스의 reference 명시
 export const getProducts = async () => {
   return get(ref(database, 'products')).then(snapshot => {
     if (snapshot.exists()) {
@@ -30,4 +32,20 @@ export const getProducts = async () => {
     }
     return [];
   });
+};
+
+export const getCart = async userId => {
+  return get(ref(database, `carts/${userId}`)).then(snapshot => {
+    const items = snapshot.val() || {};
+    return Object.values(items);
+  });
+};
+
+export const addOrUpdateCart = async (userId, product) => {
+  if (!userId) return alert('로그인 후 이용 가능합니다.');
+  return set(ref(database, `carts/${userId}/${product.id}`), product);
+};
+
+export const removeFromCart = async (userId, productId) => {
+  return remove(ref(database, `carts/${userId}/${productId}`));
 };

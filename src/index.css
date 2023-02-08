@@ -3,12 +3,9 @@
 @tailwind utilities;
 
 body {
-  @apply flex flex-col items-center font-pretendard;
+  @apply w-full h-full font-pretendard;
   -webkit-font-smooting: antialiased;
   -moz-font-smooting: grayscale;
-}
-#root {
-  @apply w-full;
 }
 select {
   @apply w-full outline-none bg-white cursor-pointer;
