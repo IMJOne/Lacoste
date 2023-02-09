@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { useUserContext } from '../context/UserContext';
-import { addOrUpdateCart } from '../api/firebase';
+import useCart from '../hooks/useCart';
 import SelectMenu from '../components/SelectMenu';
 import Button from '../components/Button';
 
 export default function ProductDetail() {
-  const { uid } = useUserContext();
+  const { addOrUpdateItem } = useCart();
   const {
     state: {
       product: { id, category, title, image, description, color, size, price },
     },
   } = useLocation();
+
   const [colorOption, setColorOption] = useState(color && color[0]);
   const [sizeOption, setSizeOption] = useState(size && size[0]);
+  const [success, setSuccess] = useState();
+
   const handleClick = () => {
     const product = { id, category, image, title, color: colorOption, size: sizeOption, price, quantity: 1 };
-    addOrUpdateCart(uid, product);
+    addOrUpdateItem.mutate(product, {
+      onSuccess: () => setSuccess('장바구니에 추가되었습니다.'),
+    });
   };
 
   return (
@@ -35,6 +39,7 @@ export default function ProductDetail() {
           <SelectMenu label={'색상'} value={colorOption} optionList={color} onChange={setColorOption} />
           <SelectMenu label={'사이즈'} value={sizeOption} optionList={size} onChange={setSizeOption} />
         </div>
+        {success && <p>장바구니에 추가되었습니다.</p>}
         <Button text={'쇼핑백에 추가하기'} onClick={handleClick} />
       </div>
     </main>

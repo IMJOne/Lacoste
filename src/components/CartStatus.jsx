@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 
-import { getCart } from '../api/firebase';
 import { useUserContext } from '../context/UserContext';
+import useCart from '../hooks/useCart';
 
 export default function CartStatus() {
-  const { user, uid } = useUserContext();
-  const { data: products } = useQuery(['carts'], () => getCart(uid));
+  const { user } = useUserContext();
+  const {
+    cartQuery: { data: products },
+  } = useCart();
 
   return (
     <Link className="relative" to={'/cart'}>
