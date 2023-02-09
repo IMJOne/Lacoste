@@ -7,6 +7,12 @@ body {
   -webkit-font-smooting: antialiased;
   -moz-font-smooting: grayscale;
 }
+main {
+  @apply max-w-screen-2xl mx-auto;
+}
+section {
+  @apply h-[calc(100vh-64px)] lg:h-[calc(100vh-168px)] bg-neutral-100 p-4 lg:mt-4;
+}
 select {
   @apply w-full outline-none bg-white cursor-pointer;
 }
