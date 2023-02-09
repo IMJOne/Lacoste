@@ -6,7 +6,7 @@ import { TfiClose } from 'react-icons/tfi';
 
 const ICON_CLASS = 'text-gray-700 text-lg cursor-pointer';
 
-export default function CartItem({ product, product: { id, category, title, image, color, size, price, quantity } }) {
+export default function CartItem({ product, product: { category, title, image, color, size, price, quantity } }) {
   const { addOrUpdateItem, removeItem } = useCart();
 
   const handleMinus = () => {
@@ -14,7 +14,7 @@ export default function CartItem({ product, product: { id, category, title, imag
     addOrUpdateItem.mutate({ ...product, quantity: quantity - 1 });
   };
   const handlePlus = () => addOrUpdateItem.mutate({ ...product, quantity: quantity + 1 });
-  const handleRemove = () => removeItem.mutate(id);
+  const handleRemove = () => removeItem.mutate(product);
 
   return (
     <li className="relative flex justify-between items-center gap-4 p-4 border-b border-neutral-100">

@@ -14,7 +14,7 @@ export default function ProductDetail() {
   const { addOrUpdateItem } = useCart();
   const {
     state: {
-      product: { id, category, title, image, description, color, size, price },
+      product: { category, title, image, description, color, size, price },
     },
   } = useLocation();
 
@@ -32,7 +32,7 @@ export default function ProductDetail() {
       alert('로그인 후 이용 가능합니다.');
       return;
     }
-    const product = { id, category, image, title, color: colorOption, size: sizeOption, price, quantity: 1 };
+    const product = { category, image, title, color: colorOption, size: sizeOption, price, quantity: 1 };
     addOrUpdateItem.mutate(product, {
       onSuccess: () => setPopup(true),
     });

@@ -44,9 +44,11 @@ export const getCart = async userId => {
 };
 
 export const addOrUpdateCart = async (userId, product) => {
-  return set(ref(database, `carts/${userId}/${product.id}`), product);
+  const productInfo = `${product.title} ${product.color} ${product.size}`;
+  return set(ref(database, `carts/${userId}/${productInfo}`), product);
 };
 
-export const removeFromCart = async (userId, productId) => {
-  return remove(ref(database, `carts/${userId}/${productId}`));
+export const removeFromCart = async (userId, product) => {
+  const productInfo = `${product.title} ${product.color} ${product.size}`;
+  return remove(ref(database, `carts/${userId}/${productInfo}`));
 };

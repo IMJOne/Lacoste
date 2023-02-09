@@ -41,7 +41,7 @@ export default function MyCart() {
           <h1 className="text-2xl text-center font-bold mb-4">내 쇼핑백</h1>
           <div className="container mx-auto flex flex-col lg:flex-row lg:items-start gap-8">
             <ul className="basis-2/3 bg-white">
-              {products && products.map(product => <CartItem key={product.id} product={product} />)}
+              {products && products.map((product, index) => <CartItem key={index} product={product} />)}
             </ul>
             <div className="basis-1/3 flex flex-col gap-4">
               <div className="bg-white">
