@@ -19,7 +19,9 @@ provider.setCustomParameters({
 });
 
 export const login = () => signInWithPopup(auth, provider).catch(console.error);
-export const logout = () => signOut(auth).catch(console.error);
+export const logout = () => {
+  if (window.confirm('로그아웃 하시겠습니까?')) signOut(auth).catch(console.error);
+};
 
 // 로그인 성공 시 유효한 사용자 정보 객체를 반환
 export const onUserStateChange = callback => onAuthStateChanged(auth, user => callback(user));
