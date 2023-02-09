@@ -11,8 +11,17 @@ main {
   @apply max-w-screen-2xl mx-auto;
 }
 section {
-  @apply h-[calc(100vh-64px)] lg:h-[calc(100vh-168px)] bg-neutral-100 p-4 lg:mt-4 overflow-y-auto;
+  @apply h-[calc(100vh-64px)] lg:h-[calc(100vh-152px)] bg-neutral-100 p-4 overflow-y-auto;
 }
 select {
   @apply w-full outline-none bg-white cursor-pointer;
+}
+::-webkit-scrollbar {
+  @apply w-2;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-brand rounded-lg;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
 }
