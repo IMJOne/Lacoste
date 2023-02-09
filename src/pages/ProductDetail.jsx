@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { useUserContext } from '../context/UserContext';
@@ -17,6 +17,11 @@ export default function ProductDetail() {
       product: { id, category, title, image, description, color, size, price },
     },
   } = useLocation();
+
+  useEffect(() => {
+    const pageTitle = document.querySelector('title');
+    pageTitle.innerText = `Lacoste - (${category}) ${title}`;
+  }, [category, title]);
 
   const [colorOption, setColorOption] = useState(color && color[0]);
   const [sizeOption, setSizeOption] = useState(size && size[0]);

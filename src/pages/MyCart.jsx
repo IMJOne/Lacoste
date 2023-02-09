@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useUserContext } from '../context/UserContext';
@@ -16,6 +16,11 @@ export default function MyCart() {
   const {
     cartQuery: { isLoading, data: products },
   } = useCart();
+
+  useEffect(() => {
+    const pageTitle = document.querySelector('title');
+    pageTitle.innerText = 'Lacoste - 내 쇼핑백';
+  }, []);
 
   const hasProducts = products && products.length > 0;
   const totalPrice =
