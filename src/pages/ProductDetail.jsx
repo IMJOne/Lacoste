@@ -33,8 +33,8 @@ export default function ProductDetail() {
 
   return (
     <main className="flex flex-col lg:flex-row justify-center gap-5 lg:gap-20 p-4">
-      <div className="basis-5/12">
-        <img src={image} alt={title} />
+      <div className="basis-5/12 xl:basis-1/3">
+        <img className="mx-auto" src={image} alt={title} />
       </div>
       <div className="basis-3/12 flex flex-col gap-4">
         <div>
