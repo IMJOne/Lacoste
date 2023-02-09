@@ -12,6 +12,7 @@ module.exports = {
       },
       transitionProperty: {
         filter: 'filter',
+        left: 'left',
       },
     },
   },

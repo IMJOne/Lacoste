@@ -4,8 +4,6 @@
 
 body {
   @apply w-full h-full font-pretendard select-none;
-  -webkit-font-smooting: antialiased;
-  -moz-font-smooting: grayscale;
 }
 main {
   @apply max-w-screen-2xl mx-auto my-12 p-4;
