@@ -6,6 +6,7 @@ import { useUserContext } from '../context/UserContext';
 import useCart from '../hooks/useCart';
 
 import LoadingScreen from '../components/LoadingScreen';
+import NotFound from '../pages/NotFount';
 import CartItem from '../components/CartItem';
 import PriceCard from '../components/PriceCard';
 import Button from '../components/Button';
@@ -15,7 +16,7 @@ const SHIPPING = 3000;
 export default function MyCart() {
   const { user } = useUserContext();
   const {
-    cartQuery: { isLoading, data: products },
+    cartQuery: { isLoading, error, data: products },
   } = useCart();
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function MyCart() {
 
   if (!user) return <UnavailablePage text={'로그인 후 이용 가능합니다.'} />;
   if (isLoading) return <LoadingScreen />;
+  if (error) return <NotFound />;
   return (
     <>
       {!hasProducts && <UnavailablePage text={'고객님의 장바구니가 비어있습니다.'} />}
