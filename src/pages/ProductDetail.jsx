@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import useCart from '../hooks/useCart';
+import SuccessPopup from '../components/SuccessPopup';
 import SelectMenu from '../components/SelectMenu';
 import Button from '../components/Button';
 
@@ -15,12 +16,12 @@ export default function ProductDetail() {
 
   const [colorOption, setColorOption] = useState(color && color[0]);
   const [sizeOption, setSizeOption] = useState(size && size[0]);
-  const [success, setSuccess] = useState();
+  const [popup, setPopup] = useState(false);
 
   const handleClick = () => {
     const product = { id, category, image, title, color: colorOption, size: sizeOption, price, quantity: 1 };
     addOrUpdateItem.mutate(product, {
-      onSuccess: () => setSuccess('장바구니에 추가되었습니다.'),
+      onSuccess: () => setPopup(true),
     });
   };
 
@@ -39,7 +40,7 @@ export default function ProductDetail() {
           <SelectMenu label={'색상'} value={colorOption} optionList={color} onChange={setColorOption} />
           <SelectMenu label={'사이즈'} value={sizeOption} optionList={size} onChange={setSizeOption} />
         </div>
-        {success && <p>장바구니에 추가되었습니다.</p>}
+        {popup && <SuccessPopup onClick={setPopup} />}
         <Button text={'쇼핑백에 추가하기'} onClick={handleClick} />
       </div>
     </main>
