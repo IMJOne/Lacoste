@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         brand: '#105a33',
         lightBlack: 'rgba(0, 0, 0, 0.8)',
+        lightWhite: 'rgba(255, 255, 255, 0.8)',
       },
       fontFamily: {
         pretendard: 'Pretendard Variable',

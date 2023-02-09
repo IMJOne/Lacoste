@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { BiShoppingBag } from 'react-icons/bi';
 
 import { useUserContext } from '../context/UserContext';
+import useCart from '../hooks/useCart';
+
+import LoadingScreen from '../components/LoadingScreen';
 import CartItem from '../components/CartItem';
 import PriceCard from '../components/PriceCard';
 import Button from '../components/Button';
-
-import { BiShoppingBag } from 'react-icons/bi';
-import useCart from '../hooks/useCart';
 
 const SHIPPING = 3000;
 
@@ -29,7 +30,7 @@ export default function MyCart() {
     hasProducts && products.reduce((prev, current) => prev + parseInt(current.price) * current.quantity, 0);
 
   if (!user) return <UnavailablePage text={'로그인 후 이용 가능합니다.'} />;
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingScreen />;
   return (
     <>
       {!hasProducts && <UnavailablePage text={'고객님의 장바구니가 비어있습니다.'} />}
@@ -60,10 +61,7 @@ function UnavailablePage({ text }) {
     <section className="flex flex-col justify-center items-center gap-8 text-center">
       <BiShoppingBag className="text-9xl text-gray-300" />
       <h1 className="text-2xl font-semibold">{text}</h1>
-      <Link
-        className="bg-black text-white px-10 py-4 rounded-md uppercase font-bold transition-opacity hover:opacity-50"
-        to={'/'}
-      >
+      <Link className="bg-black text-white px-10 py-4 rounded-md uppercase font-bold" to={'/'}>
         Continue Shopping
       </Link>
     </section>
