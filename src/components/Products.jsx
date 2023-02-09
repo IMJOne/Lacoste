@@ -8,10 +8,10 @@ export default function Products() {
   const { isLoading, error, data: products } = useQuery(['proudcts'], getProducts);
 
   return (
-    <main className="p-4">
+    <main>
       {isLoading && <h1>Loading...</h1>}
       {error && <h1>{error}</h1>}
-      <ul className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
         {products && products.map(product => <ProductCard key={product.id} product={product} />)}
       </ul>
     </main>

@@ -8,7 +8,7 @@ body {
   -moz-font-smooting: grayscale;
 }
 main {
-  @apply max-w-screen-2xl mx-auto;
+  @apply max-w-screen-2xl mx-auto my-12 p-4;
 }
 section {
   @apply h-[calc(100vh-64px)] lg:h-[calc(100vh-152px)] bg-neutral-100 p-4 overflow-y-auto;

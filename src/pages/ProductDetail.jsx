@@ -3,9 +3,11 @@ import { useLocation } from 'react-router-dom';
 
 import { useUserContext } from '../context/UserContext';
 import useCart from '../hooks/useCart';
+
 import SuccessPopup from '../components/SuccessPopup';
 import SelectMenu from '../components/SelectMenu';
 import Button from '../components/Button';
+import Footer from '../components/Footer';
 
 export default function ProductDetail() {
   const { user } = useUserContext();
@@ -32,23 +34,26 @@ export default function ProductDetail() {
   };
 
   return (
-    <main className="flex flex-col lg:flex-row justify-center gap-5 lg:gap-20 p-4">
-      <div className="basis-5/12 xl:basis-1/3">
-        <img className="mx-auto" src={image} alt={title} />
-      </div>
-      <div className="basis-3/12 flex flex-col gap-4">
-        <div>
-          <h2 className="text-xl font-bold">{`(${category}) ${title}`}</h2>
-          <p className="text-brand font-bold mt-2">{`${price.toLocaleString()}원`}</p>
+    <>
+      <main className="flex flex-col lg:flex-row justify-center gap-5 lg:gap-20">
+        <div className="basis-5/12 xl:basis-1/3">
+          <img className="mx-auto" src={image} alt={title} />
         </div>
-        <p className="text-sm">{description}</p>
-        <div>
-          <SelectMenu label={'색상'} value={colorOption} optionList={color} onChange={setColorOption} />
-          <SelectMenu label={'사이즈'} value={sizeOption} optionList={size} onChange={setSizeOption} />
+        <div className="basis-3/12 flex flex-col gap-4">
+          <div>
+            <h2 className="text-xl font-bold">{`(${category}) ${title}`}</h2>
+            <p className="text-brand font-bold mt-2">{`${price.toLocaleString()}원`}</p>
+          </div>
+          <p className="text-sm">{description}</p>
+          <div>
+            <SelectMenu label={'색상'} value={colorOption} optionList={color} onChange={setColorOption} />
+            <SelectMenu label={'사이즈'} value={sizeOption} optionList={size} onChange={setSizeOption} />
+          </div>
+          {popup && <SuccessPopup onClick={setPopup} />}
+          <Button text={'쇼핑백에 추가하기'} onClick={handleClick} />
         </div>
-        {popup && <SuccessPopup onClick={setPopup} />}
-        <Button text={'쇼핑백에 추가하기'} onClick={handleClick} />
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }
