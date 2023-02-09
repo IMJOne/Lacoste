@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { useUserContext } from '../context/UserContext';
 import useCart from '../hooks/useCart';
 import SuccessPopup from '../components/SuccessPopup';
 import SelectMenu from '../components/SelectMenu';
 import Button from '../components/Button';
 
 export default function ProductDetail() {
+  const { user } = useUserContext();
   const { addOrUpdateItem } = useCart();
   const {
     state: {
@@ -19,6 +21,10 @@ export default function ProductDetail() {
   const [popup, setPopup] = useState(false);
 
   const handleClick = () => {
+    if (!user) {
+      alert('로그인 후 이용 가능합니다.');
+      return;
+    }
     const product = { id, category, image, title, color: colorOption, size: sizeOption, price, quantity: 1 };
     addOrUpdateItem.mutate(product, {
       onSuccess: () => setPopup(true),
