@@ -38,7 +38,7 @@
 
 ## 💻 소스 코드
 
-전체 코드 보러 가기 👉 [Notion](https://imjone.notion.site/Lacoste-9d78c5adf550498580463c0f9d0d82eb)
+전체 코드 보러 가기 👉 [Notion](https://imjone.notion.site/Lacoste-9d78c5adf550498580463c0f9d0d82eb?pvs=4)
 
 ### 📍 파이어베이스 세팅
 
